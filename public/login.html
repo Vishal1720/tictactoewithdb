@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            background-color: #38023B;
+            font-size:25px;
+            margin-left:32%;
+            width: 500px;
+            padding:25px;
+        }
+        label{
+            color:white;
+        }
+        label,input{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        input{
+            width:100%;
+            font-size: large;
+            padding: 4px;
+        }
+      
+        button{
+            font-size: 27px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+           
+            background-color: #7150C5;
+            color: white;
+            border-radius: 16px;
+            margin-right: 1%;
+            width: 49%;
+            margin-top: 10px;
+        }
+        header{
+            background-color: rgb(49, 57, 170);
+background-color: #03045E;
+
+        }
+        h1{
+            font-size: 79px;
+  margin-left:35%;
+  color:white;
+  margin-bottom:10px;
+  margin-top:-10px;
+  text-shadow: 2px 3px 0px black;
+        }
+        section{
+            background-color:#0077B6;
+        }
+        #subh{
+            text-align: center;
+            font-size: 64px;
+            margin-left: 1%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        body{
+            background-color: #0096C7;      }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Tic Tac Toe</h1>
+      </header>
+      <section>
+    <h1 id="subh">Login Page</h1>
+</section>
+    <form id="logform" >
+        <label for="usernames">Username</label>
+        <input type="text" id="usernames" name="uname"  placeholder="Please enter your username"><br>
+        <label for="pwd">Password</label><input type="password" id="pwd" placeholder="Enter your password"><br>
+        <button onclick="logForm()">Submit</button><button type="reset">Clear</button>
+    </form>
+   
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+<script>
+    
+    
+    
+     async function logForm(){
+        const uname = document.getElementById("usernames").value;
+        const pwd=document.getElementById("pwd").value;
+        if(!uname || !pwd)
+        {
+            alert("Please do not leave empty fields");
+            return;
+        }
+
+        const userData={
+            uname:uname,
+            pwd:pwd
+        }
+
+        try {
+                // Make an Axios POST request to the server
+                const response = await axios.post('/logform', userData);
+                console.log(response.data);
+                alert("Form submitted successfully!");
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("Error submitting form. Please try again.");
+            }
+
+     }
+
+
+  
+</script>
+</body>
+
+</html>

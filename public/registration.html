@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            background-color: #38023B;
+            font-size:25px;
+            margin-left:32%;
+            width: 500px;
+            padding:25px;
+        }
+        label{
+            color:white;
+        }
+        label,input{
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+        input{
+            width:100%;
+            font-size: large;
+            padding: 4px;
+        }
+        select{
+            font-size: large;
+        }
+        button{
+            font-size: 27px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+           
+            background-color: #7150C5;
+            color: white;
+            border-radius: 16px;
+            margin-right: 1%;
+            width: 49%;
+            margin-top: 10px;
+        }
+        header{
+            background-color: rgb(49, 57, 170);
+background-color: #03045E;
+
+        }
+        h1{
+            font-size: 79px;
+  margin-left:35%;
+  color:white;
+  margin-bottom:10px;
+  margin-top:-10px;
+  text-shadow: 2px 3px 0px black;
+        }
+        section{
+            background-color:#0077B6;
+        }
+        #subh{
+            text-align: center;
+            font-size: 64px;
+            margin-left: 1%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        body{
+            background-color: #0096C7;      }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Tic Tac Toe</h1>
+      </header>
+      <section>
+    <h1 id="subh">Registration Form</h1>
+</section>
+    <form id="regform" action="login.html">
+        <label for="usernames">Username</label>
+        <input type="text" id="usernames" name="uname"  placeholder="Please enter your username"><br>
+        <label for="email">Email</label><input type="email" id="email" placeholder="Please enter your email" autocomplete="email"><br>
+        <label for="phonenumber">Tel No.</label><input type="tel" id="phonenumber" maxlength="10" placeholder="Enter your Telephone number"><br>
+        <label for="gender">Gender</label><br><select id="gender"><option>Male</option><option>Female</option><option>Others</option></select><br>
+        <label for="pwd">Enter Password</label><input type="password" id="pwd" placeholder="Enter your password"><br>
+        <label for="confpwd">Confirm Password</label><input type="password" id="confpwd" placeholder="Confirm your password"><br>
+        <button onclick="submitForm()">Submit</button><button type="reset">Clear</button>
+    </form>
+   
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
+<script>
+     
+
+
+    async function submitForm() {
+            const username = document.getElementById("usernames").value;
+            const email = document.getElementById("email").value;
+            const phonenumber = document.getElementById("phonenumber").value;
+            const gender = document.getElementById("gender").value;
+            const pwd = document.getElementById("pwd").value;
+            const confpwd = document.getElementById("confpwd").value;
+ 
+            if (!username || !email || !phonenumber || !gender || !pwd || !confpwd) {
+            alert("Please fill in all the fields");
+            return;
+        }
+
+        if(pwd != confpwd) {
+            alert("Passwords do not match");
+            return;
+        }
+
+            const userData = {
+                uname: username,
+                email: email,
+                phonenumber: phonenumber,
+                gender: gender,
+                pwd: pwd,
+            };
+console.log(userData);
+            try {
+                // Make an Axios POST request to the server
+                const response = await axios.post('/subform', userData);
+                console.log(response.data);
+                alert("Form submitted successfully!");
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("Error submitting form. Please try again.");
+            }
+        }
+</script>
+</body>
+
+</html>
