@@ -11,6 +11,7 @@
             margin-left:32%;
             width: 500px;
             padding:25px;
+            margin-top: 7%;
         }
         label{
             color:white;
@@ -62,6 +63,22 @@ background-color: #03045E;
         }
         body{
             background-color: #0096C7;      }
+            input[type="checkbox"]{width:fit-content;
+                margin:15px;
+            }
+
+            input[type="button"]{
+                width:200px;
+                background-color: blue;
+                color: white;
+                position:absolute;
+                 top: 110px;
+                left:76%;
+                text-shadow: 2px 2px 2px rgb(12, 10, 10);
+                border-radius: 10px;
+                font-size: 29px;
+                padding: 10px;
+            }
     </style>
 
 </head>
@@ -72,24 +89,57 @@ background-color: #03045E;
       <section>
     <h1 id="subh">Login Page</h1>
 </section>
-    <form id="logform" >
+    <form id="logform">
         <label for="usernames">Username</label>
         <input type="text" id="usernames" name="uname"  placeholder="Please enter your username"><br>
         <label for="pwd">Password</label><input type="password" id="pwd" placeholder="Enter your password"><br>
-        <button onclick="logForm()">Submit</button><button type="reset">Clear</button>
+        <label for="ShowPassword">Show Password</label><input type="checkbox" id="ShowPassword" onchange="showpassword()"><br>
+        <button onclick="logForm(event)">Submit</button><button type="reset">Clear</button>
     </form>
+    <input type="button" onclick="regnow()" value=" Register Now">
    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 <script>
     
+    var pwdbox=document.getElementById("pwd");
+
+    function showpassword(){
+    password=document.getElementById("pwd");
+    if(password.type == "password")
+    {
+        password.type="text";
+    }
+    else
+    {
+        password.type="password";
+    }
+}
     
-    
-     async function logForm(){
+     var userbox = document.getElementById("usernames");
+     userbox.addEventListener("keydown", function(e){
+        if (e.keyCode == "Enter"){
+            pwdbox.focus();
+            e.preventDefault();
+        }
+     })
+     
+     pwdbox.addEventListener("keydown",function(e){
+        if(e.keyCode == "Enter")
+        {
+            logForm();
+        }
+     })
+  
+     function regnow(){
+        window.location="http://localhost:3000/registration.html";
+     }
+     async function logForm(event){
         const uname = document.getElementById("usernames").value;
         const pwd=document.getElementById("pwd").value;
         if(!uname || !pwd)
         {
             alert("Please do not leave empty fields");
+            event.preventDefault();
             return;
         }
 
@@ -101,17 +151,20 @@ background-color: #03045E;
         try {
                 // Make an Axios POST request to the server
                 const response = await axios.post('/logform', userData);
+                
                 console.log(response.data);
-                alert("Form submitted successfully!");
+                alert("Logged in successfully");
+               
+                window.location.replace("http://localhost:3000/index.html");
             } catch (error) {
                 console.error("Error submitting form:", error);
-                alert("Error submitting form. Please try again.");
+                alert("Not a valid login");
+                event.preventDefault();
+                return false;
             }
 
      }
-
-
-  
+     
 </script>
 </body>
 
