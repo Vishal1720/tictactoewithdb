@@ -35,7 +35,7 @@ app.post("/subform",(req,res)=>{
     [uname, email, phonenumber, gender, pwd],
   (error,results) => {
     if(error){
-    console.error("Error executing query",error);
+    console.error("Error executing query in /subform",error);
     return res.status(505).send("Internal Server Error");
   }
   res.json(results);
@@ -43,7 +43,9 @@ app.post("/subform",(req,res)=>{
   );
   });
 
-  app.post("/subform",(req,res)=>{
+  
+
+  app.post("/logform",(req,res)=>{
     const {uname,pwd} = req.body;
   
    
@@ -54,6 +56,9 @@ app.post("/subform",(req,res)=>{
       if(error){
       console.error("Error executing query",error);
       return res.status(505).send("Internal Server Error");
+    }
+    if(results.length == 0){
+      return res.status(404).send("User not found");
     }
     res.json(results);
   }
@@ -84,3 +89,4 @@ app.get('/subform', (req, res) => {
 app.get('/logform', (req, res) => {
   res.sendFile(__dirname + "/public/login.html"); 
 });
+
