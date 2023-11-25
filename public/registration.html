@@ -160,6 +160,44 @@ function showpassword(){
             event.preventDefault();
             return false;
         }
+            
+//password validation
+            password=document.getElementById("pwd").value;
+
+containUppercase = /[A-Z]/.test(password);
+containLowercase = /[a-z]/.test(password);
+hasnumber =/[0-9]/.test(password);
+minlength = 8;
+lengthpass = password.length;
+a=false;
+if(lengthpass<minlength)
+{
+    alert("Please enter minimum 8 characters");
+    a=true;
+}
+else if(!containUppercase)
+{
+    alert("Please enter atleast one Uppercase character");
+    a=true;
+}
+else if(!containLowercase)
+{
+    alert("Please enter atleast one Lowercase character");
+    a=true;
+}
+else if(!hasnumber)
+{
+    alert("Please enter atleast a number");
+    a=true;
+}
+else{
+    a=false;
+}
+if(a==true){
+    event.preventDefault();
+    return;
+}
+
 
         if(pwd != confpwd) {
             alert("Passwords do not match");
