@@ -159,3 +159,37 @@ h3{
   text-shadow: 2px 3px 0px black;
   width: fit-content;
 }
+
+#easy{
+  position:absolute ;
+  left: 70%;
+  top:20%;
+
+  text-align: center;
+  width:20%;
+}
+
+#normal{
+  position: absolute;
+  top:33%;
+  left:70%;
+
+  text-align: center;
+  width:20%;
+  
+}
+#easy,#normal,#hard{
+  text-shadow: 2px 2px 7px black;
+  font-size:60px;
+  transition: 0.25s linear;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+#hard{
+  position: absolute;
+  top:45%;
+  left:70%;
+  
+  text-align: center;
+  width:20%;
+}
