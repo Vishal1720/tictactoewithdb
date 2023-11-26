@@ -24,6 +24,8 @@
             width:100%;
             font-size: large;
             padding: 4px;
+            height: 25px;
+            font-size: 20px;
         }
       
         button{
@@ -69,6 +71,7 @@ background-color: #03045E;
 
             input[type="button"]{
                 width:200px;
+                height:55px;
                 background-color: blue;
                 color: white;
                 position:absolute;
@@ -79,6 +82,14 @@ background-color: #03045E;
                 font-size: 29px;
                 padding: 10px;
             }
+            input[type="checkbox"]{
+        width: 18px;
+        height: 18px;
+        transition: all .5s ease;
+        cursor: pointer;
+        background: #ccc;
+            }
+          
     </style>
 
 </head>
@@ -92,7 +103,7 @@ background-color: #03045E;
     <form id="logform">
         <label for="usernames">Username</label>
         <input type="text" id="usernames" name="uname"  placeholder="Please enter your username"><br>
-        <label for="pwd">Password</label><input type="password" id="pwd" placeholder="Enter your password"><br>
+        <label for="pwd">Password</label><input type="password"  id="pwd" placeholder="Enter your password"><br>
         <label for="ShowPassword">Show Password</label><input type="checkbox" id="ShowPassword" onchange="showpassword()"><br>
         <button onclick="logForm(event)">Submit</button><button type="reset">Clear</button>
     </form>
@@ -117,18 +128,13 @@ background-color: #03045E;
     
      var userbox = document.getElementById("usernames");
      userbox.addEventListener("keydown", function(e){
-        if (e.keyCode == "Enter"){
+        if (e.key == "Enter"){
             pwdbox.focus();
             e.preventDefault();
         }
      })
      
-     pwdbox.addEventListener("keydown",function(e){
-        if(e.keyCode == "Enter")
-        {
-            logForm();
-        }
-     })
+     
   
      function regnow(){
         window.location="http://localhost:3000/registration.html";
