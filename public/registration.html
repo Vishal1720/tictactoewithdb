@@ -109,7 +109,7 @@ background-color: #03045E;
         <input type="email" id="email" onkeydown="moveToNextElement(event,'phonenumber')" placeholder="Please enter your email" autocomplete="email">
         <br>
         <label for="phonenumber">Tel No.</label>
-        <input type="tel" id="phonenumber" name="pnum" onkeydown="moveToNextElement(event,'gender')" maxlength="10" placeholder="Enter your Telephone number">
+        <input type="tel" id="phonenumber" name="pnum" onkeydown="moveToNextElement(event,'gender')" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10" placeholder="Enter your Telephone number">
         <br>
         <label for="gender">Gender</label>
         <br>
