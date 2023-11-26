@@ -20,6 +20,7 @@ pWin = false;
 bWin = false;
 pStat = 0;
 bStat = 0;
+mode="easy";
 console.log(box);
 let msg = document.querySelector("#displayMessage");
 
@@ -37,8 +38,45 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("pl1").textContent="Player";
   }
 });
-
+easy=document.getElementById("easy");
+normal = document.getElementById("normal");
+hard = document.getElementById("hard");
+function modes(string1)
+{
+  mode=string1.toString();
+  if(mode == "easy")
+  {
+      easy.style.backgroundColor="#00bb00";
+      normal.style.backgroundColor="#c1121f";
+      hard.style.backgroundColor="#c1121f";
+      easy.style.fontSize="60px";
+      normal.style.fontSize="35px";
+      hard.style.fontSize="35px";
+  }
+  else if(mode == "normal")
+  {
+    easy.style.backgroundColor="#c1121f";
+      normal.style.backgroundColor="#00bb00";
+      hard.style.backgroundColor="#c1121f";
+      easy.style.fontSize="35px";
+      normal.style.fontSize="60px";
+      hard.style.fontSize="35px";
+  }
+  else if(mode == "hard")
+  {
+    easy.style.backgroundColor="#c1121f";
+    
+      normal.style.backgroundColor="#c1121f";
+      
+      hard.style.backgroundColor="#00bb00";
+      easy.style.fontSize="35px";
+      normal.style.fontSize="35px";
+      hard.style.fontSize="60px";
+  }
+  console.log(mode);
+}
 function clik(x) {
+ 
   if (pWin == false && bWin == false) {
     console.log("inside clik()");
     if (box[x].value == "") {
@@ -187,6 +225,22 @@ function subValue(i, j, k) {
 }
 
 function mainValue() {
+  if(mode == "easy"){
+    randombotvalue();
+  }
+  else if(mode == "normal"){
+    xValue(0, 4, 8);
+  xValue(1, 4, 7);
+  xValue(0, 1, 2);
+  xValue(2, 4, 6);
+  xValue(3, 4, 5);
+  xValue(0, 3, 6);
+  xValue(6, 7, 8);
+  xValue(2, 5, 8);
+
+  randombotvalue();
+  }
+  else if(mode == "hard"){
   //checking for chances that bot can win directly if two boxes have same value O
   subValue(0, 4, 8);
   subValue(1, 4, 7);
@@ -207,9 +261,14 @@ function mainValue() {
   xValue(2, 5, 8);
 
   subValue(2, 5, 8);
+  randombotvalue();
+}
+}
+
+function randombotvalue(){
   if (req === true) {
     a = Math.floor(Math.random() * 9);
-    {
+    
       if (box[a].value == "") {
         console.log(
           "inside bot value if condition for random" +
@@ -220,10 +279,9 @@ function mainValue() {
         box[a].value = "O";
         checkWin();
       } else botValue();
-    }
+    
   }
 }
-
 function xValue(i, j, k) {
   if (req == true) {
     if (box[i].value == "X" && box[j].value == "X") {
