@@ -16,7 +16,7 @@ box=document.getElementsByClassName('box');
 pvpval="X";
 
 document.addEventListener("DOMContentLoaded", function() {
-  var passedValue = sessionStorage.getItem('param');
+  var passedValue = sessionStorage.getItem('unamepassed');
   console.log(passedValue); 
 
   if(passedValue.length != 0)
