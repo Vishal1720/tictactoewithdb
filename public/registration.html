@@ -103,27 +103,27 @@ background-color: #03045E;
 </section>
     <form id="regform" >
         <label for="usernames">Username</label>
-        <input type="text" id="usernames" name="uname"  placeholder="Please enter your username" autofocus autocomplete="on">
+        <input type="text" id="usernames" name="uname" onkeydown="moveToNextElement(event,'email')"  placeholder="Please enter your username" autofocus autocomplete="on">
         <br>
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Please enter your email" autocomplete="email">
+        <input type="email" id="email" onkeydown="moveToNextElement(event,'phonenumber')" placeholder="Please enter your email" autocomplete="email">
         <br>
         <label for="phonenumber">Tel No.</label>
-        <input type="tel" id="phonenumber" name="pnum" maxlength="10" placeholder="Enter your Telephone number">
+        <input type="tel" id="phonenumber" name="pnum" onkeydown="moveToNextElement(event,'gender')" maxlength="10" placeholder="Enter your Telephone number">
         <br>
         <label for="gender">Gender</label>
         <br>
-        <select id="gender"><option>Male</option><option>Female</option><option>Others</option></select>
+        <select id="gender" onkeydown="moveToNextElement(event,'pwd')"><option>Male</option><option>Female</option><option>Others</option></select>
         <br>
         <label for="pwd" id="labpwd">Enter Password</label>
-        <input type="password" id="pwd" placeholder="Enter your password">
+        <input type="password" id="pwd" placeholder="Enter your password" onkeydown="moveToNextElement(event,'confpwd')">
         <br>
-        <label for="confpwd">Confirm Password</label><input type="password" id="confpwd" placeholder="Confirm your password">
+        <label for="confpwd">Confirm Password</label><input type="password" id="confpwd" onkeydown="moveToNextElement(event,'submit1')" placeholder="Confirm your password">
         <br>
         <label id="chklab" for="showpwd">Show password</label>
         <input id="showpwd" onchange="showpassword()" type="checkbox">
         <br>
-        <button onclick="submitForm(event)">Submit</button><button type="reset">Clear</button>
+        <button onclick="submitForm(event)" id="submit1">Submit</button><button type="reset">Clear</button>
     </form><input type="button" onclick="login()" value=" LOGIN NOW">
    
      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
@@ -146,20 +146,45 @@ function showpassword(){
     }
 }
 
+
+
+function moveToNextElement(event, nextElementId) {
+    if(nextElementId == "submit1"){
+        if(event.key == "Enter")
+        {
+            event.preventDefault();
+            submitForm(event);
+        }
+    } else if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById(nextElementId).focus();
+        }
+    }
+
     async function submitForm(event) {
         
-            const username = document.getElementById("usernames").value;
-            const email = document.getElementById("email").value;
-            const pnum = document.getElementById("phonenumber").value;
-            const gender = document.getElementById("gender").value;
+        const userbox = document.getElementById("usernames");
+            const username = userbox.value;
+            const emailbox = document.getElementById("email");
+            const email = emailbox.value;
+            
+            const pnumbox = document.getElementById("phonenumber");
+            const pnum = pnumbox.value;
+            const genderbox = document.getElementById("gender");
+            const gender = genderbox.value;
+            
             const pwd = document.getElementById("pwd").value;
             const confpwd = document.getElementById("confpwd").value;
- 
+           
+           
+
+            
             if (!username || !email || !pnum || !gender || !pwd || !confpwd) {
             alert("Please fill in all the fields");
             event.preventDefault();
             return false;
-        }
+            }
+            
             
 //password validation
             password=document.getElementById("pwd").value;
@@ -222,7 +247,7 @@ console.log(userData);
                 
             } catch (error) {
                 console.error( "Error",error);
-                window.alert("Error",error);
+                window.alert("Enter a unique user value",error);
                 event.preventDefault();
             }
         }
