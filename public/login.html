@@ -102,7 +102,7 @@ background-color: #03045E;
 </section>
     <form id="logform">
         <label for="usernames">Username</label>
-        <input type="text" id="usernames" name="uname"  placeholder="Please enter your username"><br>
+        <input type="text" id="usernames" name="uname"  placeholder="Please enter your username" autofocus><br>
         <label for="pwd">Password</label><input type="password"  id="pwd" placeholder="Enter your password"><br>
         <label for="ShowPassword">Show Password</label><input type="checkbox" id="ShowPassword" onchange="showpassword()"><br>
         <button onclick="logForm(event)">Submit</button><button type="reset">Clear</button>
@@ -160,7 +160,8 @@ background-color: #03045E;
                 
                 console.log(response.data);
                 alert("Logged in successfully");
-               
+                var valueToPass = uname;
+    sessionStorage.setItem("unamepassed", valueToPass);
                 window.location.replace("http://localhost:3000/index.html");
             } catch (error) {
                 console.error("Error submitting form:", error);
