@@ -25,6 +25,19 @@ let msg = document.querySelector("#displayMessage");
 
 console.log(msg);
 
+document.addEventListener("DOMContentLoaded", function() {
+  var passedValue = sessionStorage.getItem('param');
+  console.log(passedValue); 
+  if(passedValue.length != 0)
+  {
+    document.getElementById("pl1").textContent=passedValue;
+  }
+  else
+  {
+    document.getElementById("pl1").textContent="Player";
+  }
+});
+
 function clik(x) {
   if (pWin == false && bWin == false) {
     console.log("inside clik()");
