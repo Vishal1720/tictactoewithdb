@@ -224,12 +224,29 @@ function subValue(i, j, k) {
     }
   }
 }
-
+function checkallfilled(){
+  if (
+    box[0].value != "" &&
+    box[1].value != "" &&
+    box[2].value != "" &&
+    box[3].value != "" &&
+    box[4].value != "" &&
+    box[5].value != "" &&
+    box[6].value != "" &&
+    box[7].value != "" &&
+    box[8].value != ""
+  ) {
+    retry();
+    req=false;
+  }
+}
 function mainValue() {
   if(mode == "easy"){
+    checkallfilled()
     randombotvalue();
   }
   else if(mode == "normal"){
+    checkallfilled()
     xValue(0, 4, 8);
   xValue(1, 4, 7);
   xValue(0, 1, 2);
@@ -243,6 +260,7 @@ function mainValue() {
   }
   else if(mode == "hard"){
   //checking for chances that bot can win directly if two boxes have same value O
+  checkallfilled();//prevents infinite recursion when all boxes are filled
   subValue(0, 4, 8);
   subValue(1, 4, 7);
   subValue(0, 1, 2);
