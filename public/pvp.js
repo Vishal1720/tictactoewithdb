@@ -60,11 +60,13 @@ function pvpclick(x) {
   }
 
   function mcheckWin(x, y, z) {
+    p1name = document.getElementById("P1");
+    p2name = document.getElementById("P2");
     if (box[x].value == "X" && box[y].value == "X" && box[z].value == "X") {
       //checks left to right diag line for player
       console.log("You WIN");
       p1Win = true;
-      msg.textContent = "Player 1 Wins";
+      msg.textContent = p1name.textContent+" Wins";
       msg.style.color = "blue";
       p1Stat++;
       pstat.textContent = p1Stat;
@@ -78,7 +80,7 @@ function pvpclick(x) {
       p2Win = true;
       p2Stat++;
       bstat.textContent = p2Stat;
-      msg.textContent = "Player 2 Wins";
+      msg.textContent = p2name.textContent+" Wins";
       msg.style.color = "Red";
   
       retry();
