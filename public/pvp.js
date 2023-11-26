@@ -15,6 +15,20 @@ box=document.getElementsByClassName('box');
 
 pvpval="X";
 
+document.addEventListener("DOMContentLoaded", function() {
+  var passedValue = sessionStorage.getItem('param');
+  console.log(passedValue); 
+
+  if(passedValue.length != 0)
+  {
+    document.getElementById("P1").textContent=passedValue;
+  }
+  else
+  {
+    document.getElementById("P1").textContent="Player 1";
+  }
+});
+
 function pvpclick(x) {
   if (p1Win == false && p2Win == false) {
     console.log("inside clik()");
