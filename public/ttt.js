@@ -27,15 +27,16 @@ let msg = document.querySelector("#displayMessage");
 console.log(msg);
 
 document.addEventListener("DOMContentLoaded", function() {
-  var passedValue = sessionStorage.getItem('param');
+  var passedValue = sessionStorage.getItem('unamepassed');
   console.log(passedValue); 
-  if(passedValue.length != 0)
+  if(passedValue !== null && passedValue.length == 0)
   {
-    document.getElementById("pl1").textContent=passedValue;
+    document.getElementById("pl1").textContent="Player";
   }
   else
   {
-    document.getElementById("pl1").textContent="Player";
+   
+    document.getElementById("pl1").textContent=passedValue;
   }
 });
 easy=document.getElementById("easy");
