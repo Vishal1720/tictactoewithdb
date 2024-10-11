@@ -3,14 +3,9 @@ const app = express();
 const db = require("./db");
 const path = require("path");
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public"),{index:false,}));//prevented default loading of index page
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
 
 app.post("/scores", (req, res) => {
   const { score, name } = req.body;
@@ -28,8 +23,6 @@ app.post("/scores", (req, res) => {
 
 app.post("/subform",(req,res)=>{
   const {uname,email,phonenumber,gender,pwd} = req.body;
-
- 
   db.query(
     "INSERT INTO regform (username, email, phone, gender, password) VALUES (?, ?, ?, ?, ?)",
     [uname, email, phonenumber, gender, pwd],
@@ -47,8 +40,6 @@ app.post("/subform",(req,res)=>{
 
   app.post("/logform",(req,res)=>{
     const {uname,pwd} = req.body;
-  
-   
     db.query(
       "select * from regform where username = ? and password = ?",
       [uname, pwd],
@@ -78,8 +69,9 @@ app.get("/users", (req, res) => {
   );
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/highscores.html");
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/public/login.html"); 
 });
 
 app.get('/subform', (req, res) => {
@@ -90,3 +82,7 @@ app.get('/logform', (req, res) => {
   res.sendFile(__dirname + "/public/login.html"); 
 });
 
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port http://localhost:${PORT}`);
+});
