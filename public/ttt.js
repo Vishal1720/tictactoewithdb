@@ -135,6 +135,7 @@ async function checkWin() {
   mcheckWin(3, 4, 5);
   mcheckWin(0, 3, 6);
   mcheckWin(6, 7, 8);
+  
   //below condition to check if all elements are filled to display retry button
   const score = parseInt(bstat.textContent);
   if (score == 3) {
