@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+          *{
+            margin: 0px;
+            padding: 0px; 
+           
+        }
+        body{
+            font-family: 'Nunito',sans-serif;
+        }
         form{
             background-color: #38023B;
             font-size:25px;
@@ -75,7 +83,7 @@ background-color: #03045E;
                 background-color: blue;
                 color: white;
                 position:absolute;
-                 top: 110px;
+                 top: 13%;
                 left:76%;
                 text-shadow: 2px 2px 2px rgb(12, 10, 10);
                 border-radius: 10px;
@@ -89,7 +97,6 @@ background-color: #03045E;
         cursor: pointer;
         background: #ccc;
             }
-          
     </style>
 
 </head>
@@ -107,7 +114,7 @@ background-color: #03045E;
         <label for="ShowPassword">Show Password</label><input type="checkbox" id="ShowPassword" onchange="showpassword()"><br>
         <button onclick="logForm(event)">Submit</button><button type="reset">Clear</button>
     </form>
-    <input type="button" onclick="regnow()" value=" Register Now">
+    <input type="button" id="regbtn" onclick="regnow()" value=" Register Now">
    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 <script>
