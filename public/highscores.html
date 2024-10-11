@@ -50,7 +50,7 @@
     $(document).ready(function() {
       $.get('/users', function(data) {
         data.forEach(function(user) {
-          $('#user-list').append('<tr>' +'<td>'+ user.ID +'</td>'+'<td>'+ user.Name +'</td>'+'<td>'+ user.Score +'</td>'+ '</tr>');
+          $('#user-list').append('<tr>' +'<td>'+ user.id +'</td>'+'<td>'+ user.Name +'</td>'+'<td>'+ user.score +'</td>'+ '</tr>');
         });
       });
     });
